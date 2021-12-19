@@ -1,0 +1,545 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="seletiva_analistas_002Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="analista_barema_inscricao_pontuacao">
+          <Key>
+            <PropertyRef Name="id_pontuacao" />
+          </Key>
+          <Property Name="id_pontuacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_inscricao" Type="int" Nullable="false" />
+          <Property Name="pontuacao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_barema_pontuacao">
+          <Key>
+            <PropertyRef Name="id_pontuacao" />
+          </Key>
+          <Property Name="id_pontuacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_inscricao" Type="int" Nullable="false" />
+          <Property Name="idvagaperfilbarema" Type="int" Nullable="false" />
+          <Property Name="pontuacao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_cidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="uf" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="ibge" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_experiencia_profissional">
+          <Key>
+            <PropertyRef Name="id_experiencia_profissional" />
+          </Key>
+          <Property Name="id_experiencia_profissional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_inscricao" Type="int" Nullable="false" />
+          <Property Name="id_documento" Type="int" Nullable="false" />
+          <Property Name="empresa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="cargo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="atividades_desenvolvidas" Type="text" Nullable="false" />
+          <Property Name="perminencia_inicio" Type="date" Nullable="false" />
+          <Property Name="perminencia_final" Type="date" Nullable="false" />
+          <Property Name="vinculo_trabalho" Type="enum" Nullable="false" />
+          <Property Name="outro_desc" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="motivo_saida" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_inscricao">
+          <Key>
+            <PropertyRef Name="id_inscricao" />
+          </Key>
+          <Property Name="id_inscricao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idinscrito" Type="int" Nullable="false" />
+          <Property Name="idvaga" Type="int" Nullable="false" />
+          <Property Name="idperfil" Type="int" Nullable="false" />
+          <Property Name="nota" Type="int" />
+          <Property Name="dtinscricao" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="etapa" Type="int" Nullable="false" />
+          <Property Name="processo_seletivo" Type="int" Nullable="false" />
+          <Property Name="nivel" Type="enum" />
+        </EntityType>
+        <EntityType Name="analista_inscrito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aprovado" Type="enum" />
+          <Property Name="pcd" Type="enum" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="cpf" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="rg" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cart_prof" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="dtnasc" Type="date" Nullable="false" />
+          <Property Name="endereco" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bairro" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="complemento" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="cep" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="idcidade" Type="int" Nullable="false" />
+          <Property Name="tel_fixo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="tel_celular" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="e_mail" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="dtcadastro" Type="date" Nullable="false" />
+          <Property Name="observacao" Type="text" />
+        </EntityType>
+        <EntityType Name="analista_inscrito_documento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_documento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome_desc" Type="varchar" MaxLength="255" />
+          <Property Name="link" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="dtenvio" Type="date" Nullable="false" />
+          <Property Name="id_inscricao" Type="int" Nullable="false" />
+          <Property Name="idvagaperfilbarema" Type="int" />
+          <Property Name="pontuar" Type="enum" Nullable="false" />
+          <Property Name="detalhe" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="analista_perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="perfil" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_uf">
+          <Key>
+            <PropertyRef Name="id_uf" />
+          </Key>
+          <Property Name="id_uf" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uf_sigla" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="uf_extenso" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_vaga">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vaga" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="idcidade" Type="int" Nullable="false" />
+          <Property Name="processo_seletivo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_vaga_perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idvaga" Type="int" Nullable="false" />
+          <Property Name="idperfil" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="pleno" Type="int" />
+          <Property Name="senior" Type="int" />
+          <Property Name="processo_seletivo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_vaga_perfil_barema">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="pontos" Type="int" Nullable="false" />
+          <Property Name="minimo" Type="int" Nullable="false" />
+          <Property Name="maximo" Type="int" Nullable="false" />
+          <Property Name="acada" Type="int" />
+          <Property Name="idvagaperfil" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nivel" Type="enum" Nullable="false" />
+        </EntityType>
+        <Association Name="fkidvagaperfil">
+          <End Role="analista_vaga_perfil" Type="Self.analista_vaga_perfil" Multiplicity="1" />
+          <End Role="analista_vaga_perfil_barema" Type="Self.analista_vaga_perfil_barema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analista_vaga_perfil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="analista_vaga_perfil_barema">
+              <PropertyRef Name="idvagaperfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="seletiva_analistas_002ModelStoreContainer">
+          <EntitySet Name="analista_barema_inscricao_pontuacao" EntityType="Self.analista_barema_inscricao_pontuacao" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_barema_pontuacao" EntityType="Self.analista_barema_pontuacao" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_cidade" EntityType="Self.analista_cidade" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_experiencia_profissional" EntityType="Self.analista_experiencia_profissional" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_inscricao" EntityType="Self.analista_inscricao" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_inscrito" EntityType="Self.analista_inscrito" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_inscrito_documento" EntityType="Self.analista_inscrito_documento" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_perfil" EntityType="Self.analista_perfil" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_uf" EntityType="Self.analista_uf" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_vaga" EntityType="Self.analista_vaga" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_vaga_perfil" EntityType="Self.analista_vaga_perfil" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <EntitySet Name="analista_vaga_perfil_barema" EntityType="Self.analista_vaga_perfil_barema" Schema="seletiva_analistas_002" store:Type="Tables" />
+          <AssociationSet Name="fkidvagaperfil" Association="Self.fkidvagaperfil">
+            <End Role="analista_vaga_perfil" EntitySet="analista_vaga_perfil" />
+            <End Role="analista_vaga_perfil_barema" EntitySet="analista_vaga_perfil_barema" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="seletiva_analistas_002Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="analista_barema_inscricao_pontuacao">
+          <Key>
+            <PropertyRef Name="id_pontuacao" />
+          </Key>
+          <Property Name="id_pontuacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_inscricao" Type="Int32" Nullable="false" />
+          <Property Name="pontuacao" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_barema_pontuacao">
+          <Key>
+            <PropertyRef Name="id_pontuacao" />
+          </Key>
+          <Property Name="id_pontuacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_inscricao" Type="Int32" Nullable="false" />
+          <Property Name="idvagaperfilbarema" Type="Int32" Nullable="false" />
+          <Property Name="pontuacao" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_cidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cidade" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ibge" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_experiencia_profissional">
+          <Key>
+            <PropertyRef Name="id_experiencia_profissional" />
+          </Key>
+          <Property Name="id_experiencia_profissional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_inscricao" Type="Int32" Nullable="false" />
+          <Property Name="id_documento" Type="Int32" Nullable="false" />
+          <Property Name="empresa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cargo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="atividades_desenvolvidas" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="perminencia_inicio" Type="DateTime" Nullable="false" />
+          <Property Name="perminencia_final" Type="DateTime" Nullable="false" />
+          <Property Name="vinculo_trabalho" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="outro_desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="motivo_saida" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_inscricao">
+          <Key>
+            <PropertyRef Name="id_inscricao" />
+          </Key>
+          <Property Name="id_inscricao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idinscrito" Type="Int32" Nullable="false" />
+          <Property Name="idvaga" Type="Int32" Nullable="false" />
+          <Property Name="idperfil" Type="Int32" Nullable="false" />
+          <Property Name="nota" Type="Int32" />
+          <Property Name="dtinscricao" Type="DateTime" Nullable="false" />
+          <Property Name="etapa" Type="Int32" Nullable="false" />
+          <Property Name="processo_seletivo" Type="Int32" Nullable="false" />
+          <Property Name="nivel" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="analista_inscrito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aprovado" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+          <Property Name="pcd" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cpf" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cart_prof" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dtnasc" Type="DateTime" Nullable="false" />
+          <Property Name="endereco" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bairro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="complemento" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cep" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idcidade" Type="Int32" Nullable="false" />
+          <Property Name="tel_fixo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tel_celular" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="e_mail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dtcadastro" Type="DateTime" Nullable="false" />
+          <Property Name="observacao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="analista_inscrito_documento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nome_desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="link" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dtenvio" Type="DateTime" Nullable="false" />
+          <Property Name="id_inscricao" Type="Int32" Nullable="false" />
+          <Property Name="idvagaperfilbarema" Type="Int32" />
+          <Property Name="pontuar" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="detalhe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="analista_perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="perfil" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_uf">
+          <Key>
+            <PropertyRef Name="id_uf" />
+          </Key>
+          <Property Name="id_uf" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uf_sigla" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uf_extenso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_vaga">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vaga" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idcidade" Type="Int32" Nullable="false" />
+          <Property Name="processo_seletivo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="analista_vaga_perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idvaga" Type="Int32" Nullable="false" />
+          <Property Name="idperfil" Type="Int32" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="pleno" Type="Int32" />
+          <Property Name="senior" Type="Int32" />
+          <Property Name="processo_seletivo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="analista_vaga_perfil_barema" Relationship="Self.fkidvagaperfil" FromRole="analista_vaga_perfil" ToRole="analista_vaga_perfil_barema" />
+        </EntityType>
+        <EntityType Name="analista_vaga_perfil_barema">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pontos" Type="Int32" Nullable="false" />
+          <Property Name="minimo" Type="Int32" Nullable="false" />
+          <Property Name="maximo" Type="Int32" Nullable="false" />
+          <Property Name="acada" Type="Int32" />
+          <Property Name="idvagaperfil" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nivel" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="analista_vaga_perfil" Relationship="Self.fkidvagaperfil" FromRole="analista_vaga_perfil_barema" ToRole="analista_vaga_perfil" />
+        </EntityType>
+        <Association Name="fkidvagaperfil">
+          <End Role="analista_vaga_perfil" Type="Self.analista_vaga_perfil" Multiplicity="1" />
+          <End Role="analista_vaga_perfil_barema" Type="Self.analista_vaga_perfil_barema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analista_vaga_perfil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="analista_vaga_perfil_barema">
+              <PropertyRef Name="idvagaperfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="seletiva_analistas_002Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="analista_barema_inscricao_pontuacao" EntityType="Self.analista_barema_inscricao_pontuacao" />
+          <EntitySet Name="analista_barema_pontuacao" EntityType="Self.analista_barema_pontuacao" />
+          <EntitySet Name="analista_cidade" EntityType="Self.analista_cidade" />
+          <EntitySet Name="analista_experiencia_profissional" EntityType="Self.analista_experiencia_profissional" />
+          <EntitySet Name="analista_inscricao" EntityType="Self.analista_inscricao" />
+          <EntitySet Name="analista_inscrito" EntityType="Self.analista_inscrito" />
+          <EntitySet Name="analista_inscrito_documento" EntityType="Self.analista_inscrito_documento" />
+          <EntitySet Name="analista_perfil" EntityType="Self.analista_perfil" />
+          <EntitySet Name="analista_uf" EntityType="Self.analista_uf" />
+          <EntitySet Name="analista_vaga" EntityType="Self.analista_vaga" />
+          <EntitySet Name="analista_vaga_perfil" EntityType="Self.analista_vaga_perfil" />
+          <EntitySet Name="analista_vaga_perfil_barema" EntityType="Self.analista_vaga_perfil_barema" />
+          <AssociationSet Name="fkidvagaperfil" Association="Self.fkidvagaperfil">
+            <End Role="analista_vaga_perfil" EntitySet="analista_vaga_perfil" />
+            <End Role="analista_vaga_perfil_barema" EntitySet="analista_vaga_perfil_barema" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="seletiva_analistas_002ModelStoreContainer" CdmEntityContainer="seletiva_analistas_002Entities">
+          <EntitySetMapping Name="analista_barema_inscricao_pontuacao">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_barema_inscricao_pontuacao">
+              <MappingFragment StoreEntitySet="analista_barema_inscricao_pontuacao">
+                <ScalarProperty Name="id_pontuacao" ColumnName="id_pontuacao" />
+                <ScalarProperty Name="id_inscricao" ColumnName="id_inscricao" />
+                <ScalarProperty Name="pontuacao" ColumnName="pontuacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_barema_pontuacao">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_barema_pontuacao">
+              <MappingFragment StoreEntitySet="analista_barema_pontuacao">
+                <ScalarProperty Name="id_pontuacao" ColumnName="id_pontuacao" />
+                <ScalarProperty Name="id_inscricao" ColumnName="id_inscricao" />
+                <ScalarProperty Name="idvagaperfilbarema" ColumnName="idvagaperfilbarema" />
+                <ScalarProperty Name="pontuacao" ColumnName="pontuacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_cidade">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_cidade">
+              <MappingFragment StoreEntitySet="analista_cidade">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="uf" ColumnName="uf" />
+                <ScalarProperty Name="ibge" ColumnName="ibge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_experiencia_profissional">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_experiencia_profissional">
+              <MappingFragment StoreEntitySet="analista_experiencia_profissional">
+                <ScalarProperty Name="id_experiencia_profissional" ColumnName="id_experiencia_profissional" />
+                <ScalarProperty Name="id_inscricao" ColumnName="id_inscricao" />
+                <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+                <ScalarProperty Name="empresa" ColumnName="empresa" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="atividades_desenvolvidas" ColumnName="atividades_desenvolvidas" />
+                <ScalarProperty Name="perminencia_inicio" ColumnName="perminencia_inicio" />
+                <ScalarProperty Name="perminencia_final" ColumnName="perminencia_final" />
+                <ScalarProperty Name="vinculo_trabalho" ColumnName="vinculo_trabalho" />
+                <ScalarProperty Name="outro_desc" ColumnName="outro_desc" />
+                <ScalarProperty Name="motivo_saida" ColumnName="motivo_saida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_inscricao">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_inscricao">
+              <MappingFragment StoreEntitySet="analista_inscricao">
+                <ScalarProperty Name="id_inscricao" ColumnName="id_inscricao" />
+                <ScalarProperty Name="idinscrito" ColumnName="idinscrito" />
+                <ScalarProperty Name="idvaga" ColumnName="idvaga" />
+                <ScalarProperty Name="idperfil" ColumnName="idperfil" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="dtinscricao" ColumnName="dtinscricao" />
+                <ScalarProperty Name="etapa" ColumnName="etapa" />
+                <ScalarProperty Name="processo_seletivo" ColumnName="processo_seletivo" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_inscrito">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_inscrito">
+              <MappingFragment StoreEntitySet="analista_inscrito">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="aprovado" ColumnName="aprovado" />
+                <ScalarProperty Name="pcd" ColumnName="pcd" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="rg" ColumnName="rg" />
+                <ScalarProperty Name="cart_prof" ColumnName="cart_prof" />
+                <ScalarProperty Name="dtnasc" ColumnName="dtnasc" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="idcidade" ColumnName="idcidade" />
+                <ScalarProperty Name="tel_fixo" ColumnName="tel_fixo" />
+                <ScalarProperty Name="tel_celular" ColumnName="tel_celular" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="dtcadastro" ColumnName="dtcadastro" />
+                <ScalarProperty Name="observacao" ColumnName="observacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_inscrito_documento">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_inscrito_documento">
+              <MappingFragment StoreEntitySet="analista_inscrito_documento">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+                <ScalarProperty Name="nome_desc" ColumnName="nome_desc" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="dtenvio" ColumnName="dtenvio" />
+                <ScalarProperty Name="id_inscricao" ColumnName="id_inscricao" />
+                <ScalarProperty Name="idvagaperfilbarema" ColumnName="idvagaperfilbarema" />
+                <ScalarProperty Name="pontuar" ColumnName="pontuar" />
+                <ScalarProperty Name="detalhe" ColumnName="detalhe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_perfil">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_perfil">
+              <MappingFragment StoreEntitySet="analista_perfil">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="perfil" ColumnName="perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_uf">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_uf">
+              <MappingFragment StoreEntitySet="analista_uf">
+                <ScalarProperty Name="id_uf" ColumnName="id_uf" />
+                <ScalarProperty Name="uf_sigla" ColumnName="uf_sigla" />
+                <ScalarProperty Name="uf_extenso" ColumnName="uf_extenso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_vaga">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_vaga">
+              <MappingFragment StoreEntitySet="analista_vaga">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="vaga" ColumnName="vaga" />
+                <ScalarProperty Name="idcidade" ColumnName="idcidade" />
+                <ScalarProperty Name="processo_seletivo" ColumnName="processo_seletivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_vaga_perfil">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_vaga_perfil">
+              <MappingFragment StoreEntitySet="analista_vaga_perfil">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idvaga" ColumnName="idvaga" />
+                <ScalarProperty Name="idperfil" ColumnName="idperfil" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="pleno" ColumnName="pleno" />
+                <ScalarProperty Name="senior" ColumnName="senior" />
+                <ScalarProperty Name="processo_seletivo" ColumnName="processo_seletivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analista_vaga_perfil_barema">
+            <EntityTypeMapping TypeName="seletiva_analistas_002Model.analista_vaga_perfil_barema">
+              <MappingFragment StoreEntitySet="analista_vaga_perfil_barema">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="pontos" ColumnName="pontos" />
+                <ScalarProperty Name="minimo" ColumnName="minimo" />
+                <ScalarProperty Name="maximo" ColumnName="maximo" />
+                <ScalarProperty Name="acada" ColumnName="acada" />
+                <ScalarProperty Name="idvagaperfil" ColumnName="idvagaperfil" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
